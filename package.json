@@ -3,12 +3,17 @@
   "version": "0.0.1",
   "description": "Communicate with the API and Adapt the same way using the same syntax, even when you work local or in Adapt",
   "main": "dist/AdaptPrintData.js",
-  "dependencies": {},
+  "dependencies": {
+    "@adapt-retail/banner-data": "^0.1.0",
+    "@lassehaslev/executor": "^1.0.1"
+  },
   "devDependencies": {
-    "ava": "^0.22.0"
+    "ava": "^0.22.0",
+    "browser-env": "^3.2.1"
   },
   "scripts": {
-    "test": "ava"
+    "test": "ava",
+    "tdd": "executor 'npm run test' --watch='**/*.js' --ignore='node_modules/'"
   },
   "repository": {
     "type": "git",
@@ -19,5 +24,10 @@
   "bugs": {
     "url": "https://github.com/LasseHaslev/adapt-print-data/issues"
   },
-  "homepage": "https://github.com/LasseHaslev/adapt-print-data#readme"
+  "homepage": "https://github.com/LasseHaslev/adapt-print-data#readme",
+  "ava": {
+    "require": [
+        "./test/helpers/setup-browser-env.js"
+    ]
+  }
 }
