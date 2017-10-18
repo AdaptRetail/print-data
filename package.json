@@ -1,0 +1,23 @@
+{
+  "name": "@adapt-retail/print-data",
+  "version": "0.0.1",
+  "description": "Communicate with the API and Adapt the same way using the same syntax, even when you work local or in Adapt",
+  "main": "dist/AdaptPrintData.js",
+  "dependencies": {},
+  "devDependencies": {
+    "ava": "^0.22.0"
+  },
+  "scripts": {
+    "test": "ava"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LasseHaslev/adapt-print-data.git"
+  },
+  "author": "Lasse S. Haslev",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LasseHaslev/adapt-print-data/issues"
+  },
+  "homepage": "https://github.com/LasseHaslev/adapt-print-data#readme"
+}
