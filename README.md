@@ -1,3 +1,11 @@
+# Adapt Print Data
+> This project is currently in development, and does not work. 
+
+## Example class
+
+This is what you can expect from the API when it is done
+
+```js
 export default class PrintTemplate {
 
     /**
@@ -63,3 +71,4 @@ export default class PrintTemplate {
     }
 
 }
+```
