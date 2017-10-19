@@ -27,24 +27,15 @@ test.before( t => {
 
 });
 
-test( 'It can access adapt_data through API and format its response', async t => {
-
-    let adaptData = new AdaptDataGetDataFromAPI;
-    await adaptData.onReady;
-
-    t.is( adaptData.data.name, 'Tortilla Chips' );
-    t.is( adaptData.data.formatedName, adaptData.data.name.split('').reverse().join('') );
-
-} );
-
 // It can set the adaptData through constructor method
 
 test( 'It can get and prefer getting local data over API connection', async t => {
     let adaptData = new AdaptDataGetDataFromAPI;
     await adaptData.onReady;
 
-    t.true( true );
-    // console.log(document.documentElement.innerHTML);
+
+    t.is( adaptData.data.name, 'Sykkelveske' );
+    t.is( adaptData.data.formatedName, adaptData.data.name.split('').reverse().join('') );
 
 } );
 
