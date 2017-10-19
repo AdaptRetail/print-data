@@ -2,9 +2,9 @@ const { AdaptData } = require( '@adapt-retail/banner-data' );
 
 module.exports = class AdaptPrintData {
 
-    constructor() {
+    constructor( options = {} ) {
 
-        this.adaptData = new AdaptData( this.getAdaptData() );
+        this.element = options.element || document;
 
         this.onReady = this.init();
     }
@@ -18,8 +18,15 @@ module.exports = class AdaptPrintData {
      * @return Promise
      */
     async init() {
-        this.data = await this.adaptData.start();
-        this.data = this.format( this.data.data['1'] );
+
+        // Get data based on develpment or production environment
+        this.data = this.isInAdaptProductionEnvironment()
+            ? this._getLocalDataFromDOM()
+            : await this._getDataFromAdaptAPI();
+
+
+        // Format data
+        this.data = this.format( this.data );
         return this.data;
     }
 
@@ -41,14 +48,24 @@ module.exports = class AdaptPrintData {
     getAdaptData() {}
 
     /**
-     * Get data from adapt when it is local
-     * If none is found returns null, and we use api instead
+     * Check if we are in adapt production invironment
+     *
+     * @return Boolean
+     */
+    isInAdaptProductionEnvironment() {
+        let bodyHasAdaptId = document.body.getAttribute( 'id' ) === 'adapt';
+        return bodyHasAdaptId;
+    }
+
+    /**
+     * Get data from adapt data DOM.
+     * This is how we feed data to snippets
+     * when the snippet it published to the Adapt platform
      *
      * @return Object
      */
-    getSourceData_() {
-        el = el ? el : document;
-        var dataHolders = el.querySelectorAll( 'div[data-attribute_type]' );
+    _getLocalDataFromDOM() {
+        var dataHolders = this.element.querySelectorAll( 'div[data-attribute_type]' );
 
         var object = {};
         for (var i = 0, len = dataHolders.length; i < len; i++) {
@@ -62,5 +79,17 @@ module.exports = class AdaptPrintData {
         }
         return object;
     }
+
+    /**
+     * Get data from Adapt API
+     *
+     * @return async Object
+     */
+    async _getDataFromAdaptAPI() {
+        this.adaptData = new AdaptData( this.getAdaptData() );
+        let data = await this.adaptData.start();
+        return data.data[1];
+    }
+
 
 }

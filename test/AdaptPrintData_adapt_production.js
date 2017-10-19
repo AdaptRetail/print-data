@@ -36,7 +36,13 @@ test( 'It can get and prefer getting local data over API connection', async t =>
 
     t.is( adaptData.data.name, 'Sykkelveske' );
     t.is( adaptData.data.formatedName, adaptData.data.name.split('').reverse().join('') );
+} );
 
+test( 'It can get image attribute from DOM element', async t => {
+    let adaptData = new AdaptDataGetDataFromAPI;
+    await adaptData.onReady;
+
+    t.is( adaptData.data.image, 'http://image.promoworld.ca/migration-api-hidden-new/web/images/1066/xd-1428-blue.jpg' );
 } );
 
 // It cleans up DOM after template has run
