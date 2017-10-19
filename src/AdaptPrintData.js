@@ -24,7 +24,7 @@ module.exports = class AdaptPrintData {
     }
 
     /**
-     * Format the data retrieved
+     * Format the each object in the data retrieved
      * The object returned will be used by the template
      *
      * @return Object
