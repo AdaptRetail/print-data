@@ -29,7 +29,7 @@ test.before( t => {
 
 // It can set the adaptData through constructor method
 
-test( 'It can get and prefer getting local data over API connection', async t => {
+test( 'It can get local data and prefer the local data over API connection', async t => {
     let adaptData = new AdaptDataGetDataFromAPI;
     await adaptData.onReady;
 
@@ -45,7 +45,7 @@ test( 'It can get image attribute from DOM element', async t => {
     t.is( adaptData.data.image, 'http://image.promoworld.ca/migration-api-hidden-new/web/images/1066/xd-1428-blue.jpg' );
 } );
 
-// It cleans up DOM after template has run
+// It removes attributes element on DOM after template has run
 // it takes the template element and adds it to element, then makes it available to class through this.template
 // It runs script after template is rendered
-// It changes all elements with this element
+// It changes all DOME elements with this class logic
