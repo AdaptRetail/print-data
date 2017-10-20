@@ -1,6 +1,5 @@
 import test from 'ava';
 import AdaptDataGetDataFromAPI from './fixtures/AdaptDataGetDataFromAPI';
-import AdaptDataManipulateTemplate from './fixtures/AdaptData_manipulates_template_in_scripts_section';
 
 test.beforeEach( t => {
     // Set id of body element
@@ -50,6 +49,18 @@ test( 'It takes the template function and adds it to element, then makes it avai
     t.is( adaptData.template, document.querySelector( '.data_box' ) );
 } );
 
-// It removes attributes element on DOM after template has run
-// It runs script after template is rendered
+test( 'It puts template content to element removes attributes element on DOM after template has run', async t => {
+    // console.log( document.documentElement.innerHTML );
+    let adaptData = new AdaptDataGetDataFromAPI;
+    await adaptData.onReady;
+
+    t.is( adaptData.template.innerHTML, `
+            
+        
+            <h1>Sykkelveske</h1>
+            <h2>eksevlekkyS</h2>
+            <img src="http://image.promoworld.ca/migration-api-hidden-new/web/images/1066/xd-1428-blue.jpg">
+        ` );
+} );
+// It runs script function after template is rendered
 // It changes all DOME elements with this class logic

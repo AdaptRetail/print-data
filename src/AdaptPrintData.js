@@ -101,7 +101,7 @@ module.exports = class AdaptPrintData {
      *
      * @return Object
      */
-    _getLocalDataFromDOM( element ) {
+    _getLocalDataFromDOM( element, removeAttributeElement = true ) {
         var dataHolders = element.querySelectorAll( 'div[data-attribute_type]' );
 
         var object = {};
@@ -114,6 +114,12 @@ module.exports = class AdaptPrintData {
             }
             object[ key ] = value;
         }
+
+        // Remove attribute Element
+        if ( removeAttributeElement ) {
+            element.querySelector( '.attributes' ).remove();
+        }
+
         return object;
     }
 

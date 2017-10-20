@@ -10,7 +10,7 @@ module.exports = class AdaptDataGetDataFromAPI extends AdaptPrintData {
     template() {
         return `
             <h1>{{ name }}</h1>
-            <h2>{{ formattedNmae }}</h2>
+            <h2>{{ formatedName }}</h2>
             <img src="{{ image }}">
         `;
     }
