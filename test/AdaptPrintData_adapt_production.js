@@ -43,7 +43,7 @@ test( 'It can get image attribute from DOM element', async t => {
     t.is( adaptData.data.image, 'http://image.promoworld.ca/migration-api-hidden-new/web/images/1066/xd-1428-blue.jpg' );
 } );
 
-test.only( 'It takes the template function and adds it to element, then makes it available to class through this.template', async t => {
+test( 'It takes the template function and adds it to element, then makes it available to class through this.template', async t => {
     let adaptData = new AdaptDataGetDataFromAPI;
     await adaptData.onReady;
 

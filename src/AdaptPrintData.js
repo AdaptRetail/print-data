@@ -28,11 +28,11 @@ module.exports = class AdaptPrintData {
                 this.template = elements[i];
 
                 // Get and format the data
-                let data = this.format(
+                this.data = this.format(
                     this._getLocalDataFromDOM( this.template )
                 );
 
-                this._renderTemplateToDOM( this.template, htmlTemplate, data );
+                this._renderTemplateToDOM( this.template, htmlTemplate, this.data );
 
             }
 
