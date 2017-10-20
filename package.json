@@ -5,7 +5,8 @@
   "main": "dist/AdaptPrintData.js",
   "dependencies": {
     "@adapt-retail/banner-data": "^0.1.0",
-    "@lassehaslev/executor": "^1.0.1"
+    "@lassehaslev/executor": "^1.0.1",
+    "mustache": "^2.3.0"
   },
   "devDependencies": {
     "ava": "^0.22.0",
@@ -27,7 +28,7 @@
   "homepage": "https://github.com/LasseHaslev/adapt-print-data#readme",
   "ava": {
     "require": [
-        "./test/helpers/setup-browser-env.js"
+      "./test/helpers/setup-browser-env.js"
     ]
   }
 }

@@ -1,11 +1,9 @@
 const { AdaptData } = require( '@adapt-retail/banner-data' );
+const mustache = require( 'mustache' );
 
 module.exports = class AdaptPrintData {
 
     constructor( options = {} ) {
-
-        this.element = options.element || document;
-
         this.onReady = this.init();
     }
 
@@ -18,16 +16,53 @@ module.exports = class AdaptPrintData {
      * @return Promise
      */
     async init() {
+        let htmlTemplate = this.template();
 
-        // Get data based on develpment or production environment
-        this.data = this.isInAdaptProductionEnvironment()
-            ? this._getLocalDataFromDOM()
-            : await this._getDataFromAdaptAPI();
+        if ( this.isInAdaptProductionEnvironment() ) {
 
 
-        // Format data
-        this.data = this.format( this.data );
+            let elements = document.querySelectorAll( '.data_box' );
+            for (var i = 0, len = elements.length; i < len; i++) {
+
+                // Create the template as the container of the elements
+                this.template = elements[i];
+
+                // Get and format the data
+                let data = this.format(
+                    this._getLocalDataFromDOM( this.template )
+                );
+
+                this._renderTemplateToDOM( this.template, htmlTemplate, data );
+
+            }
+
+        }
+        else {
+            await this._getDataFromAdaptAPI();
+            this.data = this.format( this.data );
+            this._renderTemplateToDOM();
+        }
+
         return this.data;
+
+    }
+
+    /**
+     * Template to be rendered to the DOM
+     *
+     * @return String
+     */
+    template() {}
+
+    /**
+     * Render template to DOM
+     *
+     * @return void
+     */
+    _renderTemplateToDOM( element, template = '', data = {} ) {
+        element.insertAdjacentHTML( 'beforeEnd', mustache.render(
+            template, data
+        ) );
     }
 
     /**
@@ -62,10 +97,12 @@ module.exports = class AdaptPrintData {
      * This is how we feed data to snippets
      * when the snippet it published to the Adapt platform
      *
+     * @param <DOMElement> element
+     *
      * @return Object
      */
-    _getLocalDataFromDOM() {
-        var dataHolders = this.element.querySelectorAll( 'div[data-attribute_type]' );
+    _getLocalDataFromDOM( element ) {
+        var dataHolders = element.querySelectorAll( 'div[data-attribute_type]' );
 
         var object = {};
         for (var i = 0, len = dataHolders.length; i < len; i++) {

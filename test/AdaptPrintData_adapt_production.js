@@ -1,13 +1,11 @@
 import test from 'ava';
 import AdaptDataGetDataFromAPI from './fixtures/AdaptDataGetDataFromAPI';
+import AdaptDataManipulateTemplate from './fixtures/AdaptData_manipulates_template_in_scripts_section';
 
-test.afterEach.always( t => {
-    document.body.removeAttribute( 'id' );
-    document.body.innerHTML = '';
-});
-test.before( t => {
+test.beforeEach( t => {
     // Set id of body element
     document.body.setAttribute( 'id', 'adapt' );
+    document.body.innerHTML = '';
 
     document.body.insertAdjacentHTML( 'beforeEnd', `
         <div class="data_box template_id_3" data-productionpagedata_id="24" data-template_id="3">
@@ -45,7 +43,13 @@ test( 'It can get image attribute from DOM element', async t => {
     t.is( adaptData.data.image, 'http://image.promoworld.ca/migration-api-hidden-new/web/images/1066/xd-1428-blue.jpg' );
 } );
 
+test.only( 'It takes the template function and adds it to element, then makes it available to class through this.template', async t => {
+    let adaptData = new AdaptDataGetDataFromAPI;
+    await adaptData.onReady;
+
+    t.is( adaptData.template, document.querySelector( '.data_box' ) );
+} );
+
 // It removes attributes element on DOM after template has run
-// it takes the template element and adds it to element, then makes it available to class through this.template
 // It runs script after template is rendered
 // It changes all DOME elements with this class logic
