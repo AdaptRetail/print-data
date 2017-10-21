@@ -10,8 +10,6 @@ module.exports = class AdaptData_run_script_after_template extends AdaptPrintDat
     template() {
         return `
             <h1>{{ name }}</h1>
-            <h2>{{ formatedName }}</h2>
-            <img src="{{ image }}">
         `;
     }
 

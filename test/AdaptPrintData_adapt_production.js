@@ -71,19 +71,34 @@ test( 'It puts template content to element removes attributes element on DOM aft
         ` );
 } );
 
-test( 'It runs script function after template is rendered', async t => {
+test( 'It runs script function after template is rendered', t => {
 
     let adaptData = new AdaptData_script;
-    await adaptData.onReady;
 
-    var heading = document.querySelectorAll( 'h1' )[1];
+    var heading = document.querySelector( 'h1' );
     t.is( 'Taken over', heading.innerHTML );
 
 } );
 
-// test( 'It changes all DOME elements with this class logic', t => {
-    // let adaptData = new AdaptDataGetDataFromAPI;
-    // await adaptData.onReady;
+test( 'It changes all DOME elements with this class logic', t => {
+    let adaptData = new AdaptDataGetDataFromAPI;
 
+    var boxes = document.querySelectorAll( '.data_box' );
 
-// } );
+    t.is( boxes[0].innerHTML, `
+            
+        
+            <h1>Sykkelbukse</h1>
+            <h2>eskublekkyS</h2>
+            <img src="http://image.promoworld.ca/migration-api-hidden-new/web/images/1066/xd-1429-sykkelbukse.jpg">
+        ` );
+
+    t.is( boxes[1].innerHTML, `
+            
+        
+            <h1>Sykkelveske</h1>
+            <h2>eksevlekkyS</h2>
+            <img src="http://image.promoworld.ca/migration-api-hidden-new/web/images/1066/xd-1428-blue.jpg">
+        ` );
+
+} );

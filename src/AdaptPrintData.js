@@ -34,6 +34,9 @@ module.exports = class AdaptPrintData {
 
                 this._renderTemplateToDOM( this.template, htmlTemplate, this.data );
 
+                // Run script each .data_box
+                this.script();
+
             }
 
         }
@@ -41,10 +44,10 @@ module.exports = class AdaptPrintData {
             await this._getDataFromAdaptAPI();
             this.data = this.format( this.data );
             this._renderTemplateToDOM();
-        }
 
-        // Run script
-        this.script();
+            // Run script
+            this.script();
+        }
 
         return this.data;
 
