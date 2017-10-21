@@ -43,6 +43,9 @@ module.exports = class AdaptPrintData {
             this._renderTemplateToDOM();
         }
 
+        // Run script
+        this.script();
+
         return this.data;
 
     }
@@ -64,6 +67,14 @@ module.exports = class AdaptPrintData {
             template, data
         ) );
     }
+
+    /**
+     * Script to run. Will represent the logic of the template
+     * This is run each .data_box
+     *
+     * @return void
+     */
+    script() {}
 
     /**
      * Format the each object in the data retrieved

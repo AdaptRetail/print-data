@@ -1,5 +1,6 @@
 import test from 'ava';
 import AdaptDataGetDataFromAPI from './fixtures/AdaptDataGetDataFromAPI';
+import AdaptData_script from './fixtures/AdaptData_run_script_after_template';
 
 test.beforeEach( t => {
     // Set id of body element
@@ -59,6 +60,16 @@ test( 'It puts template content to element removes attributes element on DOM aft
             <h2>eksevlekkyS</h2>
             <img src="http://image.promoworld.ca/migration-api-hidden-new/web/images/1066/xd-1428-blue.jpg">
         ` );
+} );
+
+test( 'It runs script function after template is rendered', async t => {
+
+    let adaptData = new AdaptData_script;
+    await adaptData.onReady;
+
+    var heading = document.querySelector( 'h1' );
+    t.is( 'Taken over', heading.innerHTML );
+
 } );
 // It runs script function after template is rendered
 // It changes all DOME elements with this class logic
