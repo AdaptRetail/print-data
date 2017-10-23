@@ -15,7 +15,7 @@ module.exports = class AdaptPrintData {
      *
      * @return Promise
      */
-    async init() {
+    init() {
         let htmlTemplate = this.template();
 
         if ( this.isInAdaptProductionEnvironment() ) {
@@ -41,12 +41,17 @@ module.exports = class AdaptPrintData {
 
         }
         else {
-            this.data = await this._getDataFromAdaptAPI();
-            this.data = this.format( this.data );
-            this._renderTemplateToDOM( document.body, htmlTemplate, this.data );
+            return this._getDataFromAdaptAPI().then( ( data ) => {
+                this.data = data;
 
-            // Run script
-            this.script();
+                this.data = this.format( this.data );
+                this._renderTemplateToDOM( document.body, htmlTemplate, this.data );
+
+                // Run script
+                this.script();
+
+                return this.data;
+            } );
         }
 
         return this.data;
@@ -142,10 +147,11 @@ module.exports = class AdaptPrintData {
      *
      * @return async Object
      */
-    async _getDataFromAdaptAPI() {
+    _getDataFromAdaptAPI() {
         this.adaptData = new AdaptData( this.getAdaptData() );
-        let data = await this.adaptData.start();
-        return data.data[1];
+        return this.adaptData.start().then( ( response ) => {
+            return response.data[1];
+        } );
     }
 
 
