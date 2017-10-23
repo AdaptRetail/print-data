@@ -111,7 +111,7 @@ module.exports = class AdaptDataGetDataFromAPI extends AdaptPrintData {
         return {
             name: item.name,
             formatedName: item.name.split('').reverse().join(''),
-            image: item.image,
+            image: this.asset( item.image ),
         }
     }
 

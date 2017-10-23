@@ -154,5 +154,15 @@ module.exports = class AdaptPrintData {
         } );
     }
 
+    /**
+     * Adds full url to asset if not already set
+     *
+     * @return String
+     */
+    asset( item = '' ) {
+        return this.adaptData
+            ? this.adaptData.asset( item )
+            : item;
+    }
 
 }

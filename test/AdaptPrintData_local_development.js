@@ -23,7 +23,7 @@ test.serial( 'It adds template to DOM', async t => {
     t.is( document.body.innerHTML, `
             <h1>Tortilla Chips</h1>
             <h2>spihC allitroT</h2>
-            <img src="59117a5906578.png">
+            <img src="https://cdn.adaptretail.com/priceco58c12436f20b4/project/1/campaign/1/production/12/preview/59117a5906578.png">
         `);
 
 } );

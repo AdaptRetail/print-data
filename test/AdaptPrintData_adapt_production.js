@@ -102,3 +102,9 @@ test( 'It changes all DOME elements with this class logic', t => {
         ` );
 
 } );
+
+test( 'the asset function does nothing in production', t => {
+    let adaptData = new AdaptDataGetDataFromAPI;
+
+    t.is( adaptData.asset( 'dont_do_it' ), 'dont_do_it' );
+} );
