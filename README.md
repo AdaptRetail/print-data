@@ -107,6 +107,9 @@ npm run build
 # 5. Select version
 npm version major|minor|patch
 
-# 6. Publish
+# 6. Publish to npm
 npm publish
+
+# Store version in git
+git push && git push --tags
 ```
