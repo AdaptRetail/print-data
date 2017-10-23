@@ -1,30 +1,12 @@
 # Adapt Print Data
-> This project is currently in development, and does not work. 
+> 🚧🚧 This project is currently in development, breaking changes may occur. 🚧🚧
 
-## Example class
-
-This is what you can expect from the API when it is done
+## Template class
 
 ```js
-export default class PrintTemplate {
+const AdaptPrintData from '@adapt-retail/adapt-print-data';
 
-    /**
-     * Pass in data from AdaptData to get data from api,
-     * if none data is found
-     *
-     * @return void
-     */
-    constructor() {
-
-        super({
-            account: 'fagmobl59dc76d368e09',
-            project: 1,
-            campaign: 3,
-            production: 2,
-            preview: true,
-        });
-
-    }
+export default class PrintTemplate extends AdaptPrintData {
 
     /**
      * This is the template of your production
@@ -42,6 +24,21 @@ export default class PrintTemplate {
             <img src="{{ image }}">
             <p class="price">{{ price }}</p>
         `;
+    }
+
+    /**
+     * Get the data to get information from Adapt Data
+     * We will build the AdaptData for you.
+     *
+     * @return Object
+     */
+    getAdaptData() {
+        return {
+            account: 'priceco58c12436f20b4',
+            project: 1,
+            campaign: 1,
+            production: 12,
+        }
     }
 
     /**
@@ -67,7 +64,8 @@ export default class PrintTemplate {
      * @return void
      */
     script() {
-        this.template.querySelector
+        // Add your logic
+        // this.template represents each element container;
     }
 
 }
