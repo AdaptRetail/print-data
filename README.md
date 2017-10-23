@@ -1,12 +1,26 @@
 # Adapt Print Data
 > 🚧🚧 This project is currently in development, breaking changes may occur. 🚧🚧
 
-## Template class
+> Create Adapt print templates locally and push directly to Adapt without thinking of anything
+
+## Install
+
+Install the package through npm
+
+```bash
+npm install @adapt-retail/print-data
+```
+
+## Usage
+
+### Template class
 
 ```js
-const AdaptPrintData from '@adapt-retail/adapt-print-data';
+// Get the base class
+const AdaptPrintData from '@adapt-retail/print-data';
 
-export default class PrintTemplate extends AdaptPrintData {
+// Create your template
+class Template extends AdaptPrintData {
 
     /**
      * This is the template of your production
@@ -69,4 +83,30 @@ export default class PrintTemplate extends AdaptPrintData {
     }
 
 }
+
+// When ready just create your new Template class to execute logic
+new Template;
+```
+
+## Development
+```bash
+# 1. Clone repository
+
+# 2. Install dependencies
+npm install
+
+# 3. Run tests
+npm run test
+
+# 3.1. Run test every time you save a file
+npm run tdd
+
+# 4. Build files
+npm run build
+
+# 5. Select version
+npm version major|minor|patch
+
+# 6. Publish
+npm publish
 ```
