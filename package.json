@@ -22,14 +22,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/LasseHaslev/adapt-print-data.git"
+    "url": "git+https://github.com/AdaptRetail/print-data.git"
   },
   "author": "Lasse S. Haslev",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/LasseHaslev/adapt-print-data/issues"
+    "url": "https://github.com/AdaptRetail/print-data/issues"
   },
-  "homepage": "https://github.com/LasseHaslev/adapt-print-data#readme",
+  "homepage": "https://github.com/AdaptRetail/print-data#readme",
   "ava": {
     "require": [
       "./test/helpers/setup-browser-env.js"
