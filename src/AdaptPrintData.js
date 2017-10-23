@@ -41,9 +41,9 @@ module.exports = class AdaptPrintData {
 
         }
         else {
-            await this._getDataFromAdaptAPI();
+            this.data = await this._getDataFromAdaptAPI();
             this.data = this.format( this.data );
-            this._renderTemplateToDOM();
+            this._renderTemplateToDOM( document.body, htmlTemplate, this.data );
 
             // Run script
             this.script();
