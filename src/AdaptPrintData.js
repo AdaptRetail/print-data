@@ -107,8 +107,7 @@ module.exports = class AdaptPrintData {
      * @return Boolean
      */
     isInAdaptProductionEnvironment() {
-        let bodyHasAdaptId = document.body.getAttribute( 'id' ) === 'adapt';
-        return bodyHasAdaptId;
+        return document.body.getAttribute( 'id' ) === 'project';
     }
 
     /**
@@ -126,10 +125,12 @@ module.exports = class AdaptPrintData {
         var object = {};
         for (var i = 0, len = dataHolders.length; i < len; i++) {
             var tmp = dataHolders[i];
+            var attributeType = tmp.getAttribute( 'data-attribute_type' );
             var key = tmp.classList[1].replace( 'a_', '' );
             var value = tmp.innerHTML;
-            if (tmp.getAttribute( 'data-attribute_type' ) == 'image') {
-                value = tmp.querySelector( 'img' ).getAttribute( 'src' );
+            if ( attributeType == 'image' || attributeType == 'imageMulti' ) {
+                var imageTag = tmp.querySelector( 'img' );
+                value = imageTag ? imageTag.getAttribute( 'src' ) : null;
             }
             object[ key ] = value;
         }
