@@ -4,7 +4,13 @@ const mustache = require( 'mustache' );
 module.exports = class AdaptPrintData {
 
     constructor( options = {} ) {
-        this.onReady = this.init();
+
+        this.elementSelector = options.elementSelector || '$id';
+
+        let autoRun = typeof options.autoRun !== 'undefined' ? options.autoRun : true;
+        if (autoRun) {
+            this.onReady = this.init();
+        }
     }
 
     /**
@@ -21,7 +27,7 @@ module.exports = class AdaptPrintData {
         if ( this.isInAdaptProductionEnvironment() ) {
 
 
-            let elements = document.querySelectorAll( '.data_box' );
+            let elements = document.querySelectorAll( this.elementSelector );
             for (var i = 0, len = elements.length; i < len; i++) {
 
                 // Create the template as the container of the elements

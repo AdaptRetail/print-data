@@ -60,7 +60,9 @@ test.beforeEach( t => {
 // It can set the adaptData through constructor method
 
 test( 'It can get local data and prefer the local data over API connection', async t => {
-    let adaptData = new AdaptDataGetDataFromAPI;
+    let adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: '.data_box',
+    });
     await adaptData.onReady;
 
 
@@ -69,20 +71,26 @@ test( 'It can get local data and prefer the local data over API connection', asy
 } );
 
 test( 'It can get image attribute from DOM element', async t => {
-    let adaptData = new AdaptDataGetDataFromAPI;
+    let adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: '.data_box',
+    });
     await adaptData.onReady;
 
     t.is( adaptData.data.image, 'https://fagmobler.no/bilder/mobel/large/HG_128_a_HGG302.jpg' );
 } );
 
 test( 'It takes the template function and adds it to element, then makes it available to class through this.template', t => {
-    let adaptData = new AdaptDataGetDataFromAPI;
+    let adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: '.data_box',
+    });
 
     t.is( adaptData.template.outerHTML, document.querySelectorAll( '.data_box' )[1].outerHTML );
 } );
 
 test( 'It puts template content to element removes attributes element on DOM after template has run', async t => {
-    let adaptData = new AdaptDataGetDataFromAPI;
+    let adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: '.data_box',
+    });
     await adaptData.onReady;
 
     t.is( adaptData.template.innerHTML, `
@@ -96,7 +104,9 @@ test( 'It puts template content to element removes attributes element on DOM aft
 
 test( 'It runs script function after template is rendered', t => {
 
-    let adaptData = new AdaptData_script;
+    let adaptData = new AdaptData_script({
+        elementSelector: '.data_box',
+    });
 
     var heading = document.querySelector( 'h1' );
     t.is( 'Taken over', heading.innerHTML );
@@ -104,7 +114,9 @@ test( 'It runs script function after template is rendered', t => {
 } );
 
 test( 'It changes all DOME elements with this class logic', t => {
-    let adaptData = new AdaptDataGetDataFromAPI;
+    let adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: '.data_box',
+    });
 
     var boxes = document.querySelectorAll( '.data_box' );
 
@@ -127,7 +139,37 @@ test( 'It changes all DOME elements with this class logic', t => {
 } );
 
 test( 'the asset function does nothing in production', t => {
-    let adaptData = new AdaptDataGetDataFromAPI;
+    let adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: '.data_box',
+    });
 
     t.is( adaptData.asset( 'dont_do_it' ), 'dont_do_it' );
+} );
+
+test( 'it can prevent autorun of init function', t => {
+
+    let adaptData = new AdaptDataGetDataFromAPI({
+        autoRun: false,
+    });
+
+    t.true( typeof adaptData.onReady === 'undefined' );
+
+} );
+
+test( 'it can set what element we should check for default is "$id"', t => {
+
+    let adaptData;
+
+    adaptData = new AdaptDataGetDataFromAPI({
+        autoRun: false,
+    });
+    t.is( adaptData.elementSelector, '$id' );
+
+    adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: 'helloworld',
+        autoRun: false,
+    });
+    t.is( adaptData.elementSelector, 'helloworld' );
+
+
 } );
