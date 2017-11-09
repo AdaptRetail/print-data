@@ -3,8 +3,8 @@ import AdaptDataGetDataFromAPI from './fixtures/AdaptDataGetDataFromAPI';
 import AdaptData_script from './fixtures/AdaptData_run_script_after_template';
 
 test.beforeEach( t => {
-    // Set id of body element
-    document.body.setAttribute( 'id', 'project' );
+
+    // Reset the body tag
     document.body.innerHTML = '';
 
     document.body.insertAdjacentHTML( 'beforeEnd', `
@@ -111,6 +111,8 @@ test( 'It puts template content to element removes attributes element on DOM aft
             <h2>G631 hcuoP etalocohC setiB sraM</h2>
             <img src="https://s3-eu-west-1.amazonaws.com/adaptstorage/priceco58c12436f20b4/dataset/1/item/2/8.png">
         ` );
+
+
 } );
 
 test( 'It runs script function after template is rendered', t => {
@@ -181,6 +183,5 @@ test( 'it can set what element we should check for default is "$id"', t => {
         autoRun: false,
     });
     t.is( adaptData.elementSelector, 'helloworld' );
-
 
 } );

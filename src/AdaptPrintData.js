@@ -113,7 +113,7 @@ module.exports = class AdaptPrintData {
      * @return Boolean
      */
     isInAdaptProductionEnvironment() {
-        return document.body.getAttribute( 'id' ) === 'project';
+        return document.querySelector( 'div#canvas' );
     }
 
     /**
