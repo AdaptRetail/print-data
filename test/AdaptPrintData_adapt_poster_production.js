@@ -90,6 +90,16 @@ test( 'It can get image attribute from DOM element', async t => {
     t.is( adaptData.data.image, 'https://s3-eu-west-1.amazonaws.com/adaptstorage/priceco58c12436f20b4/dataset/1/item/2/8.png' );
 } );
 
+test( 'It can get boolean attribute from DOM element', async t => {
+    let adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: '.data_box',
+    });
+    await adaptData.onReady;
+
+    t.is( adaptData.data.threefortwo, "0" );
+    t.is( adaptData.data.pricematch, "1" );
+} );
+
 test( 'It takes the template function and adds it to element, then makes it available to class through this.template', t => {
     let adaptData = new AdaptDataGetDataFromAPI({
         elementSelector: '.data_box',

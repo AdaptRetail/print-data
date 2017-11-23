@@ -134,10 +134,16 @@ module.exports = class AdaptPrintData {
             var attributeType = tmp.getAttribute( 'data-attribute_type' );
             var key = tmp.classList[1].replace( 'a_', '' );
             var value = tmp.innerHTML;
+
             if ( attributeType == 'image' || attributeType == 'imageMulti' ) {
                 var imageTag = tmp.querySelector( 'img' );
                 value = imageTag ? imageTag.getAttribute( 'src' ) : null;
             }
+
+            if ( attributeType == 'boolean' ) {
+                value = tmp.getAttribute( 'data-attribute_value' );
+            }
+
             object[ key ] = value;
         }
 
