@@ -48,10 +48,15 @@ module.exports = class AdaptPrintData {
         }
         else {
             return this._getDataFromAdaptAPI().then( ( data ) => {
-                this.data = data;
 
-                this.data = this.format( this.data );
+                // Format the data
+                this.data = this.format( data );
+
+                // Render the template to the DOM
                 this._renderTemplateToDOM( document.body, htmlTemplate, this.data );
+
+                // Set template to the container of the elements
+                this.template = document.body;
 
                 // Run script
                 this.script();

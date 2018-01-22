@@ -28,4 +28,12 @@ test.serial( 'It adds template to DOM', async t => {
 
 } );
 
+test.serial( 'it sets template as property after template render', async t => {
+    let adaptData = new AdaptDataGetDataFromAPI;
+    await adaptData.onReady;
+
+    t.true( adaptData.template instanceof HTMLElement );
+
+} );
+
 // It can set the adaptData through constructor method
