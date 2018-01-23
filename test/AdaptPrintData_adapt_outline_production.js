@@ -26,6 +26,9 @@ test.beforeEach( t => {
                             <div class="attribute a_image" data-attribute_type="imageMulti" data-attribute_value="">
                                 <div class="image_wrapper"><img src="https://fagmobler.no/bilder/mobel/large/TR_666_a_TR3920.jpg"></div>
                             </div>
+                            <div class="attribute a_imagecelum" data-attribute_type="celumFile" data-attribute_value="">
+                                <div class="image_wrapper"><img src="https://fagmobler.no/bilder/mobel/large/celum.jpg"></div>
+                            </div>
                             <div class="attribute a_image_primary" data-attribute_type="image" data-attribute_value=""></div>
                         </div>
                     </div>
@@ -46,6 +49,9 @@ test.beforeEach( t => {
                             <div class="attribute a_name" data-attribute_type="textSingle" data-attribute_value="">Odel Tind regulerbar blå</div>
                             <div class="attribute a_image" data-attribute_type="imageMulti" data-attribute_value="">
                                 <div class="image_wrapper"><img src="https://fagmobler.no/bilder/mobel/large/HG_128_a_HGG302.jpg"></div>
+                            </div>
+                            <div class="attribute a_imagecelum" data-attribute_type="celumFile" data-attribute_value="">
+                                <div class="image_wrapper"><img src="https://fagmobler.no/bilder/mobel/large/celum.jpg"></div>
                             </div>
                             <div class="attribute a_image_primary" data-attribute_type="image" data-attribute_value=""></div>
                         </div>
@@ -77,6 +83,15 @@ test( 'It can get image attribute from DOM element', async t => {
     await adaptData.onReady;
 
     t.is( adaptData.data.image, 'https://fagmobler.no/bilder/mobel/large/HG_128_a_HGG302.jpg' );
+} );
+
+test( 'it can get celum image attribute from DOM element', async t => {
+    let adaptData = new AdaptDataGetDataFromAPI({
+        elementSelector: '.data_box',
+    });
+    await adaptData.onReady;
+
+    t.is( adaptData.data.imagecelum, 'https://fagmobler.no/bilder/mobel/large/celum.jpg' );
 } );
 
 test( 'It takes the template function and adds it to element, then makes it available to class through this.template', t => {

@@ -121,6 +121,12 @@ module.exports = class AdaptPrintData {
         return document.querySelector( 'div#canvas' );
     }
 
+    isAttributeOfTypeImage( attributeType ) {
+        return attributeType == 'image'
+            || attributeType == 'imageMulti'
+            || attributeType == 'celumFile';
+    }
+
     /**
      * Get data from adapt data DOM.
      * This is how we feed data to snippets
@@ -140,7 +146,7 @@ module.exports = class AdaptPrintData {
             var key = tmp.classList[1].replace( 'a_', '' );
             var value = tmp.innerHTML;
 
-            if ( attributeType == 'image' || attributeType == 'imageMulti' ) {
+            if ( this.isAttributeOfTypeImage( attributeType ) ) {
                 var imageTag = tmp.querySelector( 'img' );
                 value = imageTag ? imageTag.getAttribute( 'src' ) : null;
             }

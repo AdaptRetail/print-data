@@ -114,6 +114,7 @@ module.exports = class AdaptDataGetDataFromAPI extends AdaptPrintData {
             image: this.asset( item.image ),
             threefortwo:  item.threefortwo,
             pricematch:  item.pricematch,
+            imagecelum: item.imagecelum,
         }
     }
 
