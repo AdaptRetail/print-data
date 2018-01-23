@@ -1,6 +1,4 @@
 # Adapt Print Data
-> 🚧🚧 This project is currently in development, breaking changes may occur. 🚧🚧
-
 > Create Adapt print templates locally and push directly to Adapt without thinking of anything
 
 ## Install
@@ -12,6 +10,7 @@ npm install @adapt-retail/print-data
 ```
 
 ## Usage
+> This package is used in [Adapt print template](https://github.com/AdaptRetail/print-template). Go check it out!
 
 ### Template class
 
