@@ -1,6 +1,6 @@
 {
   "name": "@adapt-retail/print-data",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Communicate with the API and Adapt the same way using the same syntax, even when you work local or in Adapt",
   "main": "dist/AdaptPrintData.js",
   "dependencies": {
